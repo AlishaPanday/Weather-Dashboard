@@ -48,3 +48,4 @@ THEN I am presented with the last searched city forecast
 
 ## Mock-Up
 The following video link and image demonstrates the application functionality:
+https://drive.google.com/file/d/1XbEWXF0OomEBeUmynGfuPbZw9J64k8mh/view 
