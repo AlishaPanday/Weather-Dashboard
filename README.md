@@ -15,8 +15,9 @@ and display list of search history which the user can click  past cities to disp
 
 ## Deployment
 
-Live Url:  
-GitHub: 
+Live Url:  https://alishapanday.github.io/Weather-Dashboard/ <br  />
+
+GitHub: https://github.com/AlishaPanday/Weather-Dashboard 
 
 
 ## User Story
