@@ -24,11 +24,18 @@ $(document).ready(function () {
         $(".btn").click(currentWeatherForecast);
         $(".btn").click(futureweatherForecast);
 
+        if (searchHistory != null && searchHistory[searchHistory.length - 1] != null) {
+            currentWeatherForecast(null, searchHistory[searchHistory.length - 1]);
+            futureweatherForecast();
+        }
     }
 
     //Function def for current weather forecast
-    function currentWeatherForecast() {
-        if ($(this).attr("id") === "search-button") {
+    function currentWeatherForecast(event, cityParam) {
+        if (cityParam != null) {
+            city = cityParam;
+        }
+        else if ($(this).attr("id") === "search-button") {
             city = $("#search-city").val();
         }
         else {
