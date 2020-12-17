@@ -1,9 +1,11 @@
 
 $(document).ready(function () {
+    //API key for open weather API
     const APIKey = "acfb5588fa124979c9615ae07af4673e";
+    //Momen.js
     const currentDate = moment().format('L');
     console.log(currentDate);
-
+    let city = "";
     const searchHistory = JSON.parse(localStorage.getItem("displayCity")) === null ? [] : JSON.parse(localStorage.getItem("displayCity"));
 
     renderSearchList();
@@ -18,13 +20,13 @@ $(document).ready(function () {
             search_history_list.text(city);
             $("#search-list").prepend(search_history_list);
         });
-
+        //calling function on button click
         $(".btn").click(currentWeatherForecast);
         $(".btn").click(futureweatherForecast);
 
     }
 
-
+    //Function def for current weather forecast
     function currentWeatherForecast() {
         if ($(this).attr("id") === "search-button") {
             city = $("#search-city").val();
@@ -53,10 +55,10 @@ $(document).ready(function () {
             console.log(response);
             //injecting content to html
             $(".city-name").html(response.name + " " + currentDate);
+            $("#weather-icon").attr("src","https://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
 
-            //convert temp to fahrenheit
+            //convert temp to celcius
             var tempF = (response.main.temp - 273.15);
-            //var tempF = (response.main.temp - 273.15) * 1.80 + 32;
             $(".current-temp").text("Temperature: " + tempF.toFixed(2) + "°C");
 
             //Transfering humidity to html
@@ -67,12 +69,15 @@ $(document).ready(function () {
             $(".current-wind").text("Wind Speed: " + wind.toFixed(2) + "MPH");
             // UV index goes here 
 
+            UVIndex(response.coord.lon,response.coord.lat);
+
         });
 
     }
-
+    //function def for future weather forecast
+    // querying the openweather databse for 5 days forecast 
     function futureweatherForecast() {
-        const fiveDayForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
+        let fiveDayForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
         let dayCount = 1;
         $.ajax({
             url: fiveDayForecast,
@@ -102,9 +107,22 @@ $(document).ready(function () {
                 }
             }
         });
+
     }
+    //function def for UVindex for current weather forecast 
+   // querying open weather UV index data for current weather forecast
+    function UVIndex(ln,lt){
+        //lets build the url for uvindex.
+        var uvqURL="https://api.openweathermap.org/data/2.5/uvi?appid="+ APIKey+"&lat="+lt+"&lon="+ln;
+        $.ajax({
+                url:uvqURL,
+                method:"GET"
+                }).then(function(response){
+                    $("#uv-index").html(response.value);
+                });
+    }
+    
     //listener on btn id
     $("#search-button").click(renderSearchList);
-
 
 });
