@@ -47,5 +47,9 @@ THEN I am presented with the last searched city forecast
 ```
 
 ## Mock-Up
-The following video link and image demonstrates the application functionality:
-https://drive.google.com/file/d/1XbEWXF0OomEBeUmynGfuPbZw9J64k8mh/view 
+The following video link and image demonstrates the application functionality: <br  />
+https://drive.google.com/file/d/1XbEWXF0OomEBeUmynGfuPbZw9J64k8mh/view   <br  />  <br  />
+![Weather-1](https://user-images.githubusercontent.com/72904217/102491468-348a5b80-40ab-11eb-870c-d8ed45aca0d9.PNG)
+![weather-2](https://user-images.githubusercontent.com/72904217/102491479-36ecb580-40ab-11eb-9797-419030fb9560.PNG)
+
+
